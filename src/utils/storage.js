@@ -4,7 +4,7 @@ function setItem(key, value) {
 }
 
 function getTodos(key) {
-  return JSON.parse(localStorage.getItem(key));
+  return JSON.parse(localStorage.getItem(key)) || [];
 }
 
 function addNewTodo(key, todo) {
@@ -18,7 +18,6 @@ function deleteTodo(key, todo) {
 }
 
 function updateAchievedTodo(key, todo) {
-  console.log({ key, todo });
   const todos = getTodos(key);
   const updatedItems = todos.map((_todo) => {
     return _todo.id === todo.id ? { ..._todo, done: true } : _todo;
