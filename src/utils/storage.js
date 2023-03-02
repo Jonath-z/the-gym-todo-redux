@@ -8,7 +8,9 @@ function getTodos(key) {
 }
 
 function addNewTodo(key, todo) {
-  return setItem(key, [...getTodos(key), todo]);
+  const todos = getTodos(key);
+
+  return setItem(key, [...todos, todo]);
 }
 
 function deleteTodo(key, todo) {
