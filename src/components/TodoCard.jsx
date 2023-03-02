@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
-import { achieveTodo, deleteTodo } from "../features/todo";
+import { achieveTodo, deleteTodo, updateTask } from "../features/todo";
+import { FaTrash } from "react-icons/fa";
 
 export default function TodoCard({ todo }) {
   const dispatch = useDispatch();
@@ -12,15 +13,24 @@ export default function TodoCard({ todo }) {
           checked={todo.done}
           onChange={() => dispatch(achieveTodo(todo))}
         />
-        <p className={`w-full break-words ${todo.done ? "line-through" : ""}`}>
+        <p
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          onBlur={(e) =>
+            dispatch(updateTask({ ...todo, task: e.target.textContent }))
+          }
+          className={`w-full outline-none break-words ${
+            todo.done ? "line-through" : ""
+          }`}
+        >
           {todo.task}
         </p>
       </div>
       <button
         onClick={() => dispatch(deleteTodo(todo))}
-        className="bg-red-500 px-5 py-2 rounded-md text-white text-bold hover:bg-red-600 transition-all"
+        className="bg-white p-3 rounded-full text-red-600 text-bold hover:bg-red-600 hover:text-white transition-all"
       >
-        Delete
+        <FaTrash className="h-6 w-6" />
       </button>
     </div>
   );

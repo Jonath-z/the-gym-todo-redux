@@ -9,7 +9,6 @@ function getTodos(key) {
 
 function addNewTodo(key, todo) {
   const todos = getTodos(key);
-
   return setItem(key, [...todos, todo]);
 }
 
@@ -19,10 +18,19 @@ function deleteTodo(key, todo) {
   return setItem(key, updatedItems);
 }
 
+function updateTask(key, todo) {
+  const todos = getTodos(key);
+  const updatedItems = todos.map((_todo) => {
+    return _todo.id === todo.id ? { ..._todo, task: todo.task } : _todo;
+  });
+
+  return setItem(key, updatedItems);
+}
+
 function updateAchievedTodo(key, todo) {
   const todos = getTodos(key);
   const updatedItems = todos.map((_todo) => {
-    return _todo.id === todo.id ? { ..._todo, done: true } : _todo;
+    return _todo.id === todo.id ? { ..._todo, done: !_todo.done } : _todo;
   });
 
   return setItem(key, updatedItems);
@@ -33,6 +41,7 @@ const storage = {
   setItem,
   deleteTodo,
   addNewTodo,
+  updateTask,
   updateAchievedTodo,
 };
 export default storage;
