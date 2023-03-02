@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import TodoCard from "./TodoCard";
+import { useSelector } from "react-redux";
 
 function TodosContainer() {
   const todos = useSelector((state) => state.todo.value);
