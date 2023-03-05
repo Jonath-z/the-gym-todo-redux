@@ -17,7 +17,8 @@ const todoSlice = createSlice({
       state.value = storage.updateAchievedTodo("_todos", action.payload);
     },
     updateTask: (state, action) => {
-      state.value = storage.updateTask("_todos", action.payload);
+      const { id, task } = action.payload;
+      state.value = storage.updateTask("_todos", id, task);
     },
   },
 });
