@@ -17,7 +17,7 @@ export default function TodoCard({ todo }) {
           contentEditable={true}
           suppressContentEditableWarning={true}
           onBlur={(e) =>
-            dispatch(updateTask({ ...todo, task: e.target.textContent }))
+            dispatch(updateTask({ id: todo.id, task: e.target.textContent }))
           }
           className={`w-full outline-none break-words ${
             todo.done ? "line-through" : ""
