@@ -18,10 +18,10 @@ function deleteTodo(key, todo) {
   return setItem(key, updatedItems);
 }
 
-function updateTask(key, todo) {
+function updateTask(key, todoId, task) {
   const todos = getTodos(key);
   const updatedItems = todos.map((_todo) => {
-    return _todo.id === todo.id ? { ..._todo, task: todo.task } : _todo;
+    return _todo.id === todoId ? { ..._todo, task } : _todo;
   });
 
   return setItem(key, updatedItems);
